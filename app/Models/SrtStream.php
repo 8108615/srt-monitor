@@ -10,12 +10,15 @@ class SrtStream extends Model
     use HasFactory;
 
     protected $table = 'srt_streams';
-    
+
     protected $fillable = [
         'nombre',
+        'modo',
         'url_srt',
         'puerto',
-        'modo',
+        'latencia',
+        'usar_passphrase',
+        'passphrase',
         'estado',
         'perdida_paquetes',
         'tiene_audio',

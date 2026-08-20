@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('srt_streams', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');                  // Ej: "Transmisión Principal Estadio"
+            $table->string('nombre');
+            $table->string('modo'); // 'listener' o 'caller'                // Ej: "Transmisión Principal Estadio"
             $table->string('url_srt');                 // Ej: "192.168.1.50" o "thegameftp.com"
             $table->integer('puerto')->default(9000);  // Puerto SRT (ej: 9000)
-            $table->enum('modo', ['listener', 'caller'])->default('listener'); // Modo de conexión SRT
+            $table->integer('latencia')->default(200); // Latencia en milisegundos (por defecto 200ms)
+            $table->boolean('usar_passphrase')->default(false);
+            $table->string('passphrase')->nullable(); // Contraseña del SRT
             $table->string('estado')->default('OFFLINE'); // ONLINE, OFFLINE, WARNING
             $table->float('perdida_paquetes')->default(0);
             $table->boolean('tiene_audio')->default(true);
