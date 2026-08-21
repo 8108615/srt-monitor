@@ -34,5 +34,8 @@ Route::get('/admin/stream/{id}', [App\Http\Controllers\StreamController::class, 
 Route::get('/admin/stream/{id}/edit', [App\Http\Controllers\StreamController::class, 'edit'])->name('admin.streams.edit')->middleware('auth');
 Route::put('/admin/stream/{id}', [App\Http\Controllers\StreamController::class, 'update'])->name('admin.streams.update')->middleware('auth');
 Route::delete('/admin/stream/{id}', [App\Http\Controllers\StreamController::class, 'destroy'])->name('admin.streams.destroy')->middleware('auth');
+// Ruta para la vista de monitoreo individual
+Route::get('/admin/stream/{id}/monitorear', [App\Http\Controllers\StreamController::class, 'monitor'])->name('admin.streams.monitor')->middleware('auth');
+Route::post('/admin/stream/{id}/restart-watcher', [App\Http\Controllers\StreamController::class, 'restartWatcher'])->name('admin.streams.restart')->middleware('auth');
 
 require __DIR__.'/settings.php';
